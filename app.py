@@ -5,18 +5,14 @@ import os
 import json
 
 # 1. AYARLAR
-st.set_page_config(page_title="Fiyat Tahmin", page_icon="🚗", layout="wide")
+st.set_page_config(page_title="Makine Öğrenmesi ile Fiyat Tahmini", page_icon="logo.png", layout="wide")
 
-st.title("🚗 Araç Değerleme Asistanı")
+st.title("Makine Öğrenmesi ile Fiyat Tahmin Sistemi")
 st.markdown("---")
 
 # 2. KATALOG YÜKLEME
-try:
-    with open("super_katalog.json", "r", encoding="utf-8") as f:
-        arac_katalogu = json.load(f)
-except FileNotFoundError:
-    st.error("Katalog dosyası bulunamadı!")
-    st.stop()
+with open("super_katalog.json", "r", encoding="utf-8") as f:
+    arac_katalogu = json.load(f)
 
 MODEL_KLASORU = "models"
 
@@ -31,7 +27,7 @@ def sonuc_goster(fiyat, marka, seri, paket):
 col1, col2 = st.columns(2, gap="large")
 
 with col1:
-    st.subheader("📌 Araç Kimliği")
+    st.subheader("Model Bilgileri")
     
     # Seçimler
     markalar = sorted(list(arac_katalogu.keys()))
@@ -57,7 +53,7 @@ with col1:
     st.info("ℹ️ Aşağıdaki teknik veriler paket seçiminize göre otomatik önerilmiştir. Hatalıysa değiştirebilirsiniz.")
 
 with col2:
-    st.subheader("⚙️ Teknik Detaylar")
+    st.subheader("Teknik Özellikler")
     
     # 1. YAKIT TİPİ (Akıllı Seçim)
     yakit_secenekleri = ["Dizel", "Benzin", "LPG & Benzin", "Hibrit", "Elektrik"]
