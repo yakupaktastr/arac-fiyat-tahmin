@@ -4,9 +4,8 @@ import joblib
 import json
 import os
 
-st.set_page_config(page_title="Fiyat Tahmin", page_icon="🚗", layout="wide")
+st.set_page_config(page_title="Makine Öğrenmesi ile Fiyat Tahmin", page_icon="logo.png", layout="wide")
 
-# JSON verisini önbelleğe alalım, her tıkta tekrar okumasın
 @st.cache_data
 def load_catalog():
     with open("super_katalog.json", "r", encoding="utf-8") as f:
@@ -14,13 +13,13 @@ def load_catalog():
 
 catalog = load_catalog()
 
-st.title("🚗 Araç Değerleme Asistanı")
+st.title("Makine Öğrenmesi ile Araç Fiyatı Tahmin Etme Projesi")
 st.markdown("---")
 
 col1, col2 = st.columns(2, gap="large")
 
 with col1:
-    st.subheader("Araç Seçimi")
+    st.subheader("Model Bilgisi")
     
     # Katalogdan verileri çek
     markalar = sorted(catalog.keys())
@@ -37,7 +36,7 @@ with col1:
     st.info(f"Motor: {specs['cc']} cc / {specs['hp']} HP | Yakıt: {specs['yakit']} | Kasa: {specs['kasa']}")
 
 with col2:
-    st.subheader("Detaylar")
+    st.subheader("Teknik Bilgiler")
     
     # Akıllı seçimler (Varsayılanları katalogdan al)
     yakit_opts = ["Dizel", "Benzin", "LPG & Benzin", "Hibrit", "Elektrik"]
